@@ -1,6 +1,5 @@
-import BookmarkList from "./BookmarkList";
-import ProductList from "./Productlist";
-import styles from "./Mainpage.module.css";
+import BookmarkList from "../components/BookmarkList";
+import ProductList from "../components/Productlist";
 import { useState } from "react";
 
 function Mainpage() {
@@ -20,5 +19,4 @@ function Mainpage() {
     </div>
   );
 }
-
 export default Mainpage;

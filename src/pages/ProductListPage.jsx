@@ -1,6 +1,7 @@
-import Item from "./UI/Item";
-import styles from "./ProductList.module.css";
-import { useEffect, useState } from "react";
+import Item from "../components/UI/Item";
+import Cateogries from "../components/Categories";
+import styles from "./ProductListPage.module.css";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 function ProductListPage() {

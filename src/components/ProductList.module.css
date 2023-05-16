@@ -1,7 +1,9 @@
 .mainbox{
     margin: 30px 0;
 }
-
+.listWrapper{
+    display: flex;
+}
 .title{
 font-family: 'Inter';
 font-style: normal;
@@ -11,8 +13,4 @@ line-height: 29px;
 display: flex;
 align-items: center;
 margin:10px;
-}
-
-.listWrapper{
-    display: flex;
 }
