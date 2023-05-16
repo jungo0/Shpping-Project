@@ -1,6 +1,6 @@
 import Item from "./UI/Item";
-import { useEffect, useState } from "react";
 import styles from "./ProductList.module.css";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function ProductList({ bookmarkState, setBookmarkState }) {

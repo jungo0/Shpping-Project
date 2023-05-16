@@ -8,17 +8,16 @@ const Item = ({ item, setBookmarkState, isBookmarked }) => {
     const existingItemIndex = bookmark.findIndex((i) => i.id === item.id);
     const isExistingItem = existingItemIndex !== -1;
 
-    if (isExistingItem) {
+    if (isExistingItem){
       bookmark.splice(existingItemIndex, 1);
-    } else {
+    }else{
       bookmark.unshift(item);
     }
-
     localStorage.setItem("bookmark", JSON.stringify(bookmark));
     setBookmarkState(JSON.parse(localStorage.getItem("bookmark")));
   };
 
-  return (
+  return(
     <div className={styles.item}>
       <div className={styles.imgBox}>
         <img

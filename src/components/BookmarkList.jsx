@@ -23,7 +23,7 @@ function BookmarkList({ bookmarkState, setBookmarkState }) {
                 setBookmarkState={setBookmarkState}
               />
             ))
-        ) : (
+        ) :(
           <Error />
         )}
       </div>
