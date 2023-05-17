@@ -1,4 +1,4 @@
-import Header from "./pages/Header";
+import Header from "./components/Header";
 import Mainpage from "./pages/Mainpage";
 import BookmarkListPage from "./pages/BookmarkListPage";
 import Dropdown from "./components/Dropdown";
