@@ -13,35 +13,35 @@ const Modal = ({
   bookMarked,
   handleBookmark,
 }) => {
-  const handleClick = (event) => {
+const handleClick = (event) => {
     if (event.target === event.currentTarget) {
-      handleClose();
+        handleClose();
     }
-  };
-  const handelModal = () => {
+};
+const handelModal = () => {
     setBookMarked((prev) => !prev);
-  };
+};
 
-  return (
-    <div className={styles.modalOver} onClick={handleClick}>
-      <div className={styles.modal}>
+return (
+<div className={styles.modalOver} onClick={handleClick}>
+    <div className={styles.modal}>
         <FontAwesomeIcon
-          className={styles.close}
-          icon={faX}
-          size="lg"
-          color="white"
-          onClick={handleClose}
+        className={styles.close}
+        icon={faX}
+        size="lg"
+        color="white"
+        onClick={handleClose}
         />
         <img className={styles.img} src={imgUrl} alt="modalImg" />
         <span className={styles.title}>{title}</span>
         <FontAwesomeIcon
-          className={bookMarked ? styles.bookcolor : styles.bookmark}
-          size="lg"
-          icon={faStar}
-          onClick={handelModal}
+        className={bookMarked ? styles.bookcolor : styles.bookmark}
+        size="lg"
+        icon={faStar}
+        onClick={handelModal}
         />
-      </div>
     </div>
-  );
+</div>
+);
 };
 export default Modal;
