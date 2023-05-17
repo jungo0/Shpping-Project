@@ -18,6 +18,13 @@
     margin-bottom: 10px;
 }
 
+.starCom{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #FFD361;;
+}
+
 .star{
     position: absolute;
     right: 10px;
