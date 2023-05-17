@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 function App() {
   const [showDropdown, setShowDropdown] = useState(false);
   const bookmark = JSON.parse(localStorage.getItem("bookmark"));
-  const [bookmarkState, setBookmarkState] = useState(bookmark);
+  const [bookmarks, setBookmarkState] = useState(bookmark);
   return (
     <>
       <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
               path="/"
               element={
                 <Mainpage
-                  bookmarkState={bookmarkState}
+                  bookmarks={bookmarks}
                   setBookmarkState={setBookmarkState}
                 />
               }
@@ -36,7 +36,7 @@ function App() {
               path="/products/list"
               element={
                 <ProductListPage
-                  bookmarkState={bookmarkState}
+                  bookmarks={bookmarks}
                   setBookmarkState={setBookmarkState}
                 />
               }
@@ -45,7 +45,7 @@ function App() {
               path="/bookmark"
               element={
                 <BookmarkListPage
-                  bookmarkState={bookmarkState}
+                  bookmarks={bookmarks}
                   setBookmarkState={setBookmarkState}
                 />
               }
