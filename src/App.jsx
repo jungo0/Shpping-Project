@@ -1,6 +1,6 @@
 import Header from "./pages/Header";
 import Mainpage from "./pages/Mainpage";
-import BookmarkListPage from "./components/BookmarkListPage";
+import BookmarkListPage from "./pages/BookmarkListPage";
 import Dropdown from "./components/Dropdown";
 import ProductListPage from "./pages/ProductListPage";
 import Footer from "./components/Footer";

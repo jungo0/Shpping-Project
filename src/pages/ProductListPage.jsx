@@ -1,4 +1,4 @@
-import Item from "../components/UI/Item";
+import Item from "../components/Item";
 import Categories from "../components/Categories";
 import styles from "./ProductListPage.module.css";
 import { useEffect, useState, useRef } from "react";

@@ -1,5 +1,5 @@
 import styles from "./BookmarkList.module.css";
-import Item from "./UI/Item";
+import Item from "./Item";
 import { useState } from "react";
 
 function BookmarkList({ bookmarkState, setBookmarkState }) {
