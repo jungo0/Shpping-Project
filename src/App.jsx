@@ -33,7 +33,7 @@ function App() {
               }
             />
             <Route
-              path="/products"
+              path="/products/list"
               element={
                 <ProductListPage
                   bookmarkState={bookmarkState}
