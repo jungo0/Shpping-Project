@@ -27,7 +27,4 @@ function Header(prop) {
     </div>
   );
 }
-
 export default Header;
-
-

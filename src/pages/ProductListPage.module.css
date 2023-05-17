@@ -1,9 +1,9 @@
 .mainbox{
-  margin: 70px 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 .listWrapper{
   display: flex;
