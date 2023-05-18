@@ -1,7 +1,7 @@
-import styles from "./Header.module.css";
-import logo from "../assets/image1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Header.module.css";
+import logo from "../assets/img_log.png";
 import { Link } from "react-router-dom";
 
 function Header(prop) {
@@ -9,7 +9,7 @@ function Header(prop) {
     prop.setShowDropdown(!prop.showDropdown);
   };
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       {" "}
       <Link to="/">
         <div className={styles.wrapper}>
@@ -24,8 +24,7 @@ function Header(prop) {
         size="2x"
         icon={faBars}
       />
-    </div>
+    </header>
   );
 }
-
 export default Header;

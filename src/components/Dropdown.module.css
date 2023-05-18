@@ -31,27 +31,27 @@ left: 122px;
 transform: translate(20px, 3px);
 }
 
+a:visited{
+  color:black;
+}
+
+a:visited{
+  color:black;
+}
 .menu{
-text-decoration: none;
-display: flex;
-align-items: center;
-justify-content: center;
-border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-flex-grow: 1;
-}
-
-.menu:last-child {
-    border-bottom: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
   }
-
-.logo{
-    margin-right: 5px;
-}
-
-a:visited{
-  color:black;
-}
-
-a:visited{
-  color:black;
-}
+  
+  .menu:last-child {
+      border-bottom: none;
+    }
+  
+  .logo{
+      margin-right: 5px;
+  }
+  

@@ -1,4 +1,4 @@
-import Item from "./UI/Item";
+import Item from "./Item";
 import styles from "./ProductList.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -7,7 +7,7 @@ function ProductList({ bookmarkState, setBookmarkState }) {
   const [data, setData] = useState([]);
   const checkIsBookmarked = (item) => {
     if (bookmarkState) {
-      return bookmarkState.some((x) => x.id === item.id);
+      return bookmarkState.some((i) => i.id === item.id);
     }
     return false;
   };
@@ -20,7 +20,7 @@ function ProductList({ bookmarkState, setBookmarkState }) {
         setData(res.data);
       });
   }, []);
-  return (
+  return ( 
     <div className={styles.mainbox}>
       <h1 className={styles.title}>상품 리스트</h1>
       <div className={styles.listWrapper}>
