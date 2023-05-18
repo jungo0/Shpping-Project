@@ -3,6 +3,7 @@
     padding:0;
     box-sizing: border-box;
     text-decoration: none;
+    
 }
 
 main{
@@ -20,3 +21,9 @@ footer{
     align-items: center;
     justify-content: center;
 }
+
+:root {
+    --toastify-z-index: 9999;
+    --toastify-color-progress-light: linear-gradient(to right, #d0dfeb, #a1a8f3);
+    --toastify-font-family: 'Inter';
+    }

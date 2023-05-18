@@ -3,10 +3,13 @@ import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const Item = ({ item, setBookmarkState, isBookmarked }) => {
   const [modalState, setModalState] = useState(false);  //modal
   const [willBookmarked, setWillBookmarked] = useState(false);
+  const notifyBookmark = () => toast("상품을 북마크에 추가!");
+  const notifyDeleteBookmark = () => toast("상품을 북마크에서 삭제! ");
 
   const handleModalOpen = () => {
     setModalState(true);
@@ -19,12 +22,14 @@ const Item = ({ item, setBookmarkState, isBookmarked }) => {
       bookmark.splice(existingItemIndex, 1);
       localStorage.setItem("bookmark", JSON.stringify(bookmark));
       setBookmarkState(JSON.parse(localStorage.getItem("bookmark")));
+      notifyDeleteBookmark();
     }
     if (!isBookmarked && willBookmarked) {
       const bookmark = JSON.parse(localStorage.getItem("bookmark")) || [];
       bookmark.unshift(item);
       localStorage.setItem("bookmark", JSON.stringify(bookmark));
       setBookmarkState(JSON.parse(localStorage.getItem("bookmark")));
+      notifyBookmark();
     }
     setModalState(false);
   };
@@ -36,8 +41,10 @@ const Item = ({ item, setBookmarkState, isBookmarked }) => {
 
     if (isExistingItem) {
       bookmark.splice(existingItemIndex, 1);
+      notifyDeleteBookmark()
     } else {
       bookmark.unshift(item);
+      notifyBookmark();
     }
 
     localStorage.setItem("bookmark", JSON.stringify(bookmark));

@@ -1,4 +1,4 @@
-import Category from "./UI/Category";
+import Category from "./ui/Category";
 import styles from "./Categories.module.css";
 
 function Categories({ currentType, setCurrentType }) {

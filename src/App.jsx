@@ -1,20 +1,21 @@
 import Header from "./pages/Header";
 import Mainpage from "./pages/Mainpage";
-import BookmarkListPage from "./components/BookmarkListPage";
+import Footer from "./components/Footer";
 import Dropdown from "./components/Dropdown";
 import ProductListPage from "./pages/ProductListPage";
-import Footer from "./components/Footer";
+import BookmarkListPage from "./pages/BookmarkListPage";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [showDropdown, setShowDropdown] = useState(false);
   const bookmark = JSON.parse(localStorage.getItem("bookmark"));
-  const [bookmarkState, setBookmarkState] = useState(bookmark);
+  const [bookmarkState, setBookmarkState] = useState(bookmark || []);
+
   return (
     <>
       <BrowserRouter>
-        <Header setShowDropdown={setShowDropdown} showDropdown={showDropdown} />
+        <Header setShowDropdown={setShowDropdown} />
         {showDropdown && (
           <Dropdown
             setShowDropdown={setShowDropdown}
@@ -22,6 +23,7 @@ function App() {
           />
         )}
         <main>
+          {" "}
           <Routes>
             <Route
               path="/"
@@ -33,7 +35,7 @@ function App() {
               }
             />
             <Route
-              path="/products"
+              path="/products/list"
               element={
                 <ProductListPage
                   bookmarkState={bookmarkState}
@@ -57,4 +59,5 @@ function App() {
     </>
   );
 }
+
 export default App;

@@ -1,13 +1,19 @@
 import BookmarkList from "../components/BookmarkList";
-import ProductList from "../components/Productlist";
-import { useState } from "react";
+import ProductList from "../components/ProductList";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Mainpage() {
-  const bookmark = JSON.parse(localStorage.getItem("bookmark"));
-  const [bookmarkState, setBookmarkState] = useState(bookmark);
-
+function Mainpage({ bookmarkState, setBookmarkState }) {
   return (
     <div>
+      <div>
+        <ToastContainer
+          position="bottom-right"
+          limit={3}
+          closeButton={true}
+          autoClose={3000}
+        />
+      </div>
       <ProductList
         bookmarkState={bookmarkState}
         setBookmarkState={setBookmarkState}
@@ -19,4 +25,5 @@ function Mainpage() {
     </div>
   );
 }
+
 export default Mainpage;
