@@ -13,7 +13,7 @@ function Dropdown({ showDropdown, setShowDropdown }) {
       <div className={styles.bubble}>
         <div className={styles.menu}>jungo님 안녕하세요!</div>
         <div className={styles.menu}>
-          <Link to="/products/list">
+          <Link to="/products">
             <span className={styles.button} onClick={handleClick}>
               <FontAwesomeIcon className={styles.logo} icon={faGift} />
               상품리스트 페이지

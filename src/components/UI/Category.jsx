@@ -4,7 +4,8 @@ import product from "../../assets/Product.png";
 import category from "../../assets/category.png";
 import exhib from "../../assets/Exhibition.png";
 import brand from "../../assets/Brand.png";
-function Cateogroy({ type, currentType, setCurrentType }) {
+
+function Type({ type, currentType, setCurrentType }) {
     let imgSrc;
     let title;
     switch (type) {
@@ -28,7 +29,8 @@ function Cateogroy({ type, currentType, setCurrentType }) {
             imgSrc = brand;
             title = "브랜드";
         default:
-            title = "브랜드";
+            imgSrc = all;
+            title = "전체";
         break;
   }
 
@@ -46,4 +48,4 @@ function Cateogroy({ type, currentType, setCurrentType }) {
   );
 }
 
-export default Cateogroy;
+export default Type;
