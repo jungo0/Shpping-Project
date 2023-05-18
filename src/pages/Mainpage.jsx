@@ -14,7 +14,7 @@ function Mainpage() {
         <div>
         <ToastContainer
           position="bottom-right"
-          limit={3}
+          limit={5}
           closeButton={true}
           autoClose={3000}
         />

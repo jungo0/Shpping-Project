@@ -78,13 +78,13 @@ function ProductListPage({ bookmarkState, setBookmarkState }) {
   };
   return (
     <div className={styles.mainbox}>
+      <Categories className={styles.cat} currentType={currentType} setCurrentType={setCurrentType} />
       <ToastContainer
         position="bottom-right"
         limit={3}
         closeButton={true}
         autoClose={3000}
       />
-      <Categories currentType={currentType} setCurrentType={setCurrentType} />
       <div className={styles.itemBox}>
         {showData
           .filter((item) =>

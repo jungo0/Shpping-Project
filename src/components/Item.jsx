@@ -41,10 +41,10 @@ const Item = ({ item, setBookmarkState, isBookmarked }) => {
 
     if (isExistingItem) {
       bookmark.splice(existingItemIndex, 1);
-      notifyBookmark();
+      notifyDeleteBookmark()
     } else {
       bookmark.unshift(item);
-      notifyDeleteBookmark()
+      notifyBookmark();
     }
 
     localStorage.setItem("bookmark", JSON.stringify(bookmark));

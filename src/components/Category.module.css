@@ -11,7 +11,8 @@
     
     color: #000000;
     border-bottom: 2px solid transparent;
-    }
+}
+
 .typeBox{
     display: flex;
     flex-direction: column;
