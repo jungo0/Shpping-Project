@@ -1,16 +1,23 @@
 import Item from "../components/Item";
-import Categories from "../components/Categories";
+import Types from "../components/Categories";
 import styles from "./ProductListPage.module.css";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ProductListPage({ bookmarkState, setBookmarkState }) {
   const [data, setData] = useState([]);
-  const [showData, setShowData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [currentType, setCurrentType] = useState("all");
+  const [itemsNumberByTypes, setItemsNumberByTypes] = useState({});
+  const [endPage, setEndPage] = useState(0);
 
+  const ITEMS_PER_PAGE = 12;
+  const obsRef = useRef(null); 
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const preventRef = useRef(true);
   const checkIsBookmarked = (item) => {
     if (bookmarkState) {
       return bookmarkState.some((x) => x.id === item.id);
@@ -19,87 +26,105 @@ function ProductListPage({ bookmarkState, setBookmarkState }) {
   };
 
   useEffect(() => {
-    axios
-      .get("http://cozshopping.codestates-seb.link/api/v1/products", {
-        method: "GET",
-      })
-      .then((res) => {
-        setData(res.data);
-      })
-      .then(() => {
-        const observer = new IntersectionObserver(obvHandler, {
-          threshold: 1.0,
-        });
-        if (obvRef.current) observer.observe(obvRef.current);
-        return () => {
-          observer.disconnect();
-        };
+    const count = {
+      all: 0,
+      Brand: 0,
+      Category: 0,
+      Product: 0,
+      Exhibition: 0,
+    };
+    const getData = async () => {
+      const response = await axios.get(
+        "http://cozshopping.codestates-seb.link/api/v1/products"
+      );
+      setData(response.data);
+      response.data.forEach((item) => {
+        count["all"] += 1;
+        count[item.type] += 1;
       });
+      setItemsNumberByTypes(count);
+    };
+    getData();
+    const observer = new IntersectionObserver(obsHandler, {
+      threshold: 1.0,
+    });
+    if (obsRef.current) observer.observe(obsRef.current);
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
-  useEffect(() => {
-    setShowData(data.slice(0,12));
-  }, [data]);
-  /* 무한 스크롤 */
-  const obvRef = useRef(null); //observer Element
-  const [page, setPage] = useState(1); // 현재 페이지
-  const [load, setLoad] = useState(false); // 로딩
-  const preventRef = useRef(true); //옵저버 중복 실행 방지
-
-  useEffect(() => {
-    getPost();
-  }, [page]);
-
-  const obvHandler = (entries) => {
-    //옵저버 콜백함수
+  /* 옵저버 생성 */
+  const obsHandler = (entries) => {
     const target = entries[0];
     if (target.isIntersecting && preventRef.current) {
-      preventRef.current = false;   // 중복 실행 방지
-      setPage((prev) => prev + 1); // 페이지 값 증가 + 1
+      preventRef.current = false;
+      setPage((prev) => prev + 1);
     }
   };
+  useEffect(() => {
+    setEndPage(Math.ceil(itemsNumberByTypes[currentType] / ITEMS_PER_PAGE));
+    setDisplayData(data.slice(0, ITEMS_PER_PAGE));
+    setPage(1);
+  }, [data]);
 
-  const timeoutRef = useRef(null);
+  useEffect(() => {
+    setEndPage(Math.ceil(itemsNumberByTypes[currentType] / ITEMS_PER_PAGE));
+    setDisplayData(
+      data
+        .filter((item) =>
+          currentType === "all" ? true : item.type === currentType
+        )
+        .slice(0, ITEMS_PER_PAGE)
+    );
+    setPage(1);
+  }, [currentType]);
+
+  useEffect(() => {
+    console.log(page + "/" + endPage);
+    if (page !== 1) getPost();
+  }, [page]);
+
+  let timer = null;
   const getPost = () => {
-    // 예약된 setTimeout이 있으면 취소
-    setLoad(true);
-    if (timeoutRef.current) {
+    setIsLoading(true);
+    if (timer) {
       clearTimeout(timeoutRef.current);
     }
-    // + 1초 setShowData를 실행 - setTimeout 
-    timeoutRef.current = setTimeout(() => {
-      setShowData((prev) => [
+    timer = setTimeout(() => {
+      setDisplayData((prev) => [
         ...prev,
-        ...data.slice((page - 1) * 12, page * 12),  //12개 기준
+        ...data
+          .filter((item) =>
+            currentType === "all" ? true : item.type === currentType
+          )
+          .slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE),
       ]);
       preventRef.current = true;
-      setLoad(false);
-    }, 1000);
+      setIsLoading(false);
+    }, 500);
   };
+
   return (
     <div className={styles.mainbox}>
-      <Categories className={styles.cat} currentType={currentType} setCurrentType={setCurrentType} />
       <ToastContainer
         position="bottom-right"
         limit={3}
         closeButton={true}
         autoClose={3000}
       />
+      <Types currentType={currentType} setCurrentType={setCurrentType} />
       <div className={styles.itemBox}>
-        {showData
-          .filter((item) =>
-            currentType === "all" ? true : item.type === currentType
-          )
-          .map((item) => (
-            <Item
-              item={item}
-              isBookmarked={checkIsBookmarked(item)}
-              bookmarkState={bookmarkState}
-              setBookmarkState={setBookmarkState}
-            />
-          ))}
+        {displayData.map((item) => (
+          <Item
+            item={item}
+            isBookmarked={checkIsBookmarked(item)}
+            bookmarkState={bookmarkState}
+            setBookmarkState={setBookmarkState}
+          />
+        ))}
       </div>
-      {load && (
+      {isLoading && (
         <div className={styles.ldsring}>
           <div></div>
           <div></div>
@@ -107,8 +132,9 @@ function ProductListPage({ bookmarkState, setBookmarkState }) {
           <div></div>
         </div>
       )}
-      <div ref={obvRef}></div>
+      <div ref={obsRef}></div>
     </div>
   );
 }
+
 export default ProductListPage;

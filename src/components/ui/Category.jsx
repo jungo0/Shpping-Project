@@ -1,9 +1,9 @@
 import styles from "./Category.module.css";
-import all from "../assets/All.png";
-import product from "../assets/Product.png";
-import category from "../assets/category.png";
-import exhib from "../assets/Exhibition.png";
-import brand from "../assets/Brand.png";
+import all from "../../assets/All.png";
+import product from "../../assets/Product.png";
+import category from "../../assets/category.png";
+import exhib from "../../assets/Exhibition.png";
+import brand from "../../assets/Brand.png";
 function Cateogroy({ type, currentType, setCurrentType }) {
     let imgSrc;
     let title;
