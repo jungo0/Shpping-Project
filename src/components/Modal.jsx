@@ -1,47 +1,46 @@
-import { faX } from "@fortawesome/free-solid-svg-icons";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import styles from "./Modal.module.css";
+import classes from "./Modal.module.css";
 
 const Modal = ({
-  imgUrl,
+  imageUrl,
+  handleModalClose,
   title,
-  isBookmarked,
-  handleClose,
-  setBookMarked,
-  bookMarked,
-  handleBookmark,
+  willBookmarked,
+  setWillBookmarked,
 }) => {
-const handleClick = (event) => {
+  const handleOverlayClick = (event) => {
     if (event.target === event.currentTarget) {
-        handleClose();
+      handleModalClose();
     }
-};
-const handelModal = () => {
-    setBookMarked((prev) => !prev);
+  };
+  const handleModalBookmark = () => {
+    setWillBookmarked((prev) => !prev);
+  };
+
+  return (
+    <div className={classes.modalOverlay} onClick={handleOverlayClick}>
+      <div className={classes.modal}>
+        <FontAwesomeIcon
+          className={classes.close}
+          icon={faX}
+          size="lg"
+          color="white"
+          onClick={handleModalClose}
+        />
+        <img className={classes.img} src={imageUrl} alt="modalImg" />
+        <span className={classes.title}>{title}</span>
+        <FontAwesomeIcon
+          className={willBookmarked ? classes.bookcolor : classes.bookmark}
+          size="lg"
+          icon={faStar}
+          onClick={handleModalBookmark}
+        />
+      </div>
+    </div>
+  );
 };
 
-return (
-<div className={styles.modalOver} onClick={handleClick}>
-    <div className={styles.modal}>
-        <FontAwesomeIcon
-        className={styles.close}
-        icon={faX}
-        size="lg"
-        color="white"
-        onClick={handleClose}
-        />
-        <img className={styles.img} src={imgUrl} alt="modalImg" />
-        <span className={styles.title}>{title}</span>
-        <FontAwesomeIcon
-        className={bookMarked ? styles.bookcolor : styles.bookmark}
-        size="lg"
-        icon={faStar}
-        onClick={handelModal}
-        />
-    </div>
-</div>
-);
-};
 export default Modal;
