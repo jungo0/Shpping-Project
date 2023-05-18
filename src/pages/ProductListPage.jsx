@@ -3,6 +3,8 @@ import Categories from "../components/Categories";
 import styles from "./ProductListPage.module.css";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductListPage({ bookmarkState, setBookmarkState }) {
   const [data, setData] = useState([]);
@@ -76,6 +78,12 @@ function ProductListPage({ bookmarkState, setBookmarkState }) {
   };
   return (
     <div className={styles.mainbox}>
+      <ToastContainer
+        position="bottom-right"
+        limit={3}
+        closeButton={true}
+        autoClose={3000}
+      />
       <Categories currentType={currentType} setCurrentType={setCurrentType} />
       <div className={styles.itemBox}>
         {showData
