@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 function App() {
   const [showDropdown, setShowDropdown] = useState(false);
   const bookmark = JSON.parse(localStorage.getItem("bookmark"));
-  const [bookmarks, setBookmarkState] = useState(bookmark);
+  const [bookmarks, setBookmarkState] = useState(bookmark || []);
   return (
     <>
       <BrowserRouter>
@@ -22,6 +22,7 @@ function App() {
           />
         )}
         <main>
+        {" "}
           <Routes>
             <Route
               path="/"
