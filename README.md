@@ -36,7 +36,7 @@
 <br>
 
 # 웹페이지 영상
-![quiz](https://github.com/jungo0/Shopping-Project/assets/81670100/e0a3b8d5-012c-42b7-9b13-c97326cea21e)
+![quiz](https://github.com/jungo0/Shopping-Project/assets/81670100/93224ee2-3b23-42d7-bae9-e456031fd837)
 
 |
 
